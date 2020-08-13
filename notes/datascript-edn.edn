@@ -1,0 +1,64 @@
+{
+  :schema {
+    :state/children {
+      :db/cardinality 
+      :db.cardinality/many, 
+      :db/valueType :db.type/ref
+    }, 
+    :state/name {
+      :db/unique
+      :db.unique/identity
+    },
+    :transition/from {
+      :db/valueType 
+      :db.type/ref
+    }, 
+    :transition/to {
+      :db/valueType :db.type/ref
+    }
+  },
+  :tx-data [
+    {
+      :state/name "root"
+    }
+    {
+      :state/name "My Awesome Sketch"}
+    {
+      :state/name "First State"
+    }
+    {
+      :state/name "Second State"
+    }
+    {
+      :state/name "root",
+      :state/children #{
+        [:state/name "My Awesome Sketch"]
+      }
+    } 
+    {
+      :state/name "My Awesome Sketch", 
+      :state/children #{
+        [:state/name "First State"]
+      }
+    }
+    {
+      :state/name "My Awesome Sketch",
+      :state/children #{
+        [:state/name "Second State"]
+      }
+    }
+    {
+      :transition/from [:state/name "First State"],
+      :transition/to [:state/name "Second State"],
+      :transition/name "some event"
+    }
+    {
+      :transition/from [:state/name "root"], 
+      :transition/to [:state/name "My Awesome Sketch"], 
+      :transition/name "default"
+    } 
+    {:transition/from 
+      [:state/name "My Awesome Sketch"], 
+      :transition/to [:state/name "First State"], 
+      :transition/name "default"
+    }]}

@@ -1,0 +1,25 @@
+{
+  "id": "root",
+  "states": {
+    "My Awesome Sketch": {
+      "id": "My Awesome Sketch",
+      "states": {
+        "First State": {
+          "id": "First State",
+          "states": {},
+          "on": {
+            "some event": "#Second State"
+          }
+        },
+        "Second State": {
+          "id": "Second State",
+          "states": {}
+        }
+      },
+      "initial": "First State",
+      "on": {}
+    }
+  },
+  "initial": "My Awesome Sketch",
+  "on": {}
+}
